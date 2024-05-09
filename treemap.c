@@ -49,6 +49,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     if (tree == NULL || key == NULL || value == NULL) return;
     if (tree->root == NULL) { // arbol vacio
         tree->root = createTreeNode(key, value);
+        tree->current = tree->root;
     } 
     else{
         TreeNode * aux = tree->root;
@@ -58,11 +59,13 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
             if (is_equal(tree,aux->pair->key,key)) return;
             if (tree->lower_than(aux->pair->key,key)) aux = aux->right;
             else aux = aux->left;
+            
         }
         TreeNode * new = createTreeNode(key, value);
         new->parent = parent;
         if (tree->lower_than(parent->pair->key,key)) parent->right = new;
         else parent->left = new;
+        tree->current = new;
     }
 }
 
