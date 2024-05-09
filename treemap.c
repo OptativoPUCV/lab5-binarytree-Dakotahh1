@@ -99,7 +99,6 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         TreeNode * hijo = (node->left != NULL) ? node->left : node->right;
 
         if (node == tree->root) {
-            tree->root = hijo;
             free(node);
         } else {
             if (node == node->parent->left) node->parent->left = hijo;
